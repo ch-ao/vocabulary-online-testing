@@ -43,8 +43,6 @@ const name = 'Computer';
 const correctAnswers = answer.toUpperCase().split('');
 const quizForm = document.querySelector('.quiz-form');
 
-console.log(data, answer, name);
-
 document.querySelector('.title').innerHTML = `${name} Testing Quiz`
 
 // render forms 
@@ -116,6 +114,7 @@ document.querySelector('.btn').addEventListener('click', (e)=> {
     }, 30);
 
     document.querySelector('.quiz').classList.add('d-none');
+    document.querySelector('.wechat').classList.remove('d-none');
   }
 })
 
