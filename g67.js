@@ -1,6 +1,4 @@
-///////////////////////////////// data ///////////////////////////////////////// 
-
-const data1 = [
+const g67_data1 = [
   {
     number: 1,
     question: "Which of the following could be unveiled?",
@@ -59,7 +57,7 @@ const data1 = [
   }
 ];
 
-const data2 = [
+const g67_data2 = [
   {
     number: 8,
     question: "",
@@ -142,7 +140,7 @@ const data2 = [
   }
 ];  
 
-const data3 = [
+const g67_data3 = [
   {
     number: 18,
     question: "Which word or words go with money?",
@@ -225,7 +223,7 @@ const data3 = [
   }
 ]  
 
-const data4 = [  
+const g67_data4 = [  
   {
     number: 28,
     question: "His uniqueness",
@@ -292,7 +290,7 @@ const data4 = [
   }
 ];
 
-const correctAnswers = [
+const g67_answers = [
   // 1 - 7 
   'ACD', 'ACD', 'ABCD', 'CD', 'BD', 'ACD', 'ACD',
   // 8 - 17 
@@ -300,134 +298,7 @@ const correctAnswers = [
   // 18 - 27
   'AC','B','CD','C','C', 'B', 'AC', 'BC', 'BD', 'ABC',
   // 28 - 35
-  'AB','CD','AD','B','AB', 'BC', 'AB', 'AD'
+  'AB','CD','AD','B','AB',   'BC', 'AB', 'AD'
 ];
-const n = correctAnswers.length;
 
-///////////////////////////////// data //////////////////////////////////////// 
-
-const quizForm = document.querySelector('.quiz-form');
-const dataRender = (arr) => {
-  arr.forEach(e => 
-    quizForm.innerHTML += 
-    `     
-      <div class="my-5 justify-content-center">
-      <p class="lead font-weight-normal"> ${e.number + '. ' + e.question}</p>
-      <div class="form-check my-2">
-        <label class="form-check-label">
-          <input type="checkbox" class="form-check-input" name=${'q' + e.number} value="A"> ${'A. ' + e.a} 
-        </label>
-      </div>
-      <div class="form-check my-2 ">
-        <label class="form-check-label">
-          <input type="checkbox" class="form-check-input" name=${'q' + e.number} value="B">${'B. ' + e.b}
-        </label>
-      </div>
-      <div class="form-check my-2">
-        <label class="form-check-label">
-          <input type="checkbox" class="form-check-input" name=${'q' + e.number} value="C">${'C. ' + e.c}
-        </label>
-      </div>
-      <div class="form-check my-2">
-        <label class="form-check-label">
-          <input type="checkbox" class="form-check-input" name=${'q' + e.number} value="D">${'D. ' + e.d}
-      </div>
-      </div>
-      <hr>
-      `
-  );
-}
-
-const dataRenderInline = (arr) => {
-  arr.forEach(e => 
-    quizForm.innerHTML += 
-    `     
-      <div class="my-5 justify-content-center">
-      <p class="lead font-weight-normal"> ${e.number + '. ' + e.question}</p>
-      <div class="form-check form-check-inline my-2">
-        <label class="form-check-label">
-          <input type="checkbox" class="form-check-input" name=${'q' + e.number} value="A"> ${'A. ' + e.a} 
-        </label>
-      </div>
-      <div class="form-check form-check-inline my-2">
-        <label class="form-check-label">
-          <input type="checkbox" class="form-check-input" name=${'q' + e.number} value="B">${'B. ' + e.b}
-        </label>
-      </div>
-      <div class="form-check form-check-inline my-2">
-        <label class="form-check-label">
-          <input type="checkbox" class="form-check-input" name=${'q' + e.number} value="C">${'C. ' + e.c}
-        </label>
-      </div>
-      <div class="form-check form-check-inline my-2">
-        <label class="form-check-label">
-          <input type="checkbox" class="form-check-input" name=${'q' + e.number} value="D">${'D. ' + e.d}
-      </div>
-      </div>
-      <hr>
-      `
-  );
-}
-
-dataRender(data1)
-quizForm.innerHTML += `      
-<h3 class="my-3 text-dark text-center">Read the following sentences. If the highlighted <span class='text-light bg-info'>word</span> is used correctly, check the box. If the highlighted <span class='text-light bg-info'>word</span> is used incorrectly, leave the check box empty.</h3>
-<hr/>
-`;
-dataRender(data2)
-quizForm.innerHTML += `      
-<h3 class="my-3 text-dark text-center">Multiple Choice Questions</h3>
-<h3 class="my-3 text-dark text-center">There may be <span class="bg-warning text-light">more than one</span>  correct answer.</h3>
-<hr/>
-`;
-dataRenderInline(data3);
-// quizForm.innerHTML += `      
-// <h3 class="my-3 text-dark text-center">Multiple Choice Questions</h3>
-// <h3 class="my-3 text-dark text-center">There may be <span class="bg-warning text-light">more than one</span>  correct answer.</h3>
-// <hr/>
-// `;
-dataRender(data4)
-// add button 
-quizForm.innerHTML += 
-`
-<div class="text-center mt-5"> 
-  <input type="submit" class="btn btn-lg btn-success finish">
-</div>
-`;
-
-// Calculate the score
-const result = document.querySelector('.result');
-document.querySelector('.finish').addEventListener('click', (e)=> {
-  e.preventDefault();
-  let score = 0;
-  const form = document.querySelector('.quiz-form');
-  const userAnswers = [ ];  
-  var missingAnswers = [ ];
-  for (let j=1; j<=n; j++) {
-    var txt = '';
-    eval(`form.q${j}[0].checked`) && (txt += eval(`form.q${j}[0].value`));
-    eval(`form.q${j}[1].checked`) && (txt += eval(`form.q${j}[1].value`));
-    eval(`form.q${j}[2].checked`) && (txt += eval(`form.q${j}[2].value`));
-    eval(`form.q${j}[3].checked`) && (txt += eval(`form.q${j}[3].value`));
-    userAnswers.push(txt)
-    txt === '' && missingAnswers.push(j);
-    } 
-    if( missingAnswers.length !== 0) {
-      alert(`Please Answer Question No. ${[...missingAnswers]} !`)
-    } else {
-    for (let i=0; i<n; i++) {
-      correctAnswers[i] === userAnswers[i] && score++;
-    }
-    //Animation 
-    scrollTo(0,0);
-    result.classList.remove('d-none');
-    const scoreShow = Math.floor(score/n * 100);
-    let output = 0;
-    const timer = setInterval (()=> {
-      result.querySelector('span').textContent = output;
-      output === scoreShow ? clearInterval(timer) : output++;
-    }, 30);
-    document.querySelector('.quiz').classList.add('d-none');
-    document.querySelector('.wechat').classList.remove('d-none');
-  }
-})
+export { g67_data1, g67_data2, g67_data3, g67_data4, g67_answers };
