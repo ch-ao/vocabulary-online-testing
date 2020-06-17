@@ -14,7 +14,7 @@ $('.start').click(()=> {
       g67();
       break;
     default: 
-      alert('We are still working on it...');
+      alert('Please choose your grade ...');
   }
 })
 
@@ -54,7 +54,7 @@ const g23 = () => {
     <h3 class="my-3 text-dark text-center">There may be <span class="bg-warning text-light">more than one</span>  correct answer.</h3>
     <hr/>
   `);
-  dataRenderInline(g23_data);
+  dataRender(g23_data);
   calculateScore(g23_answers);
 }
 
