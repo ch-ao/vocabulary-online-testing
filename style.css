@@ -6,7 +6,19 @@ label {
   font-size: 120%;
 }
 
-input {
-  font-size: 400%;
-  background-color: brown;
+#welcome {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+  background-color: rgba(220, 220, 220, 0.523);
+}
+
+.introduction {
+  max-width: 800px;
+  background-color: #ffffff;
+  background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
+  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
