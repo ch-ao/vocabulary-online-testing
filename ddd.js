@@ -1,7 +1,7 @@
 import { g67_data1, g67_data2, g67_data3, g67_data4, g67_answers } from './g67.js';
 import { g23_data, g23_answers } from './g23.js'
 
-var ontime = true;
+var isOnTime = true;
 
 $('.start').click(()=> {
   event.preventDefault();
@@ -20,7 +20,6 @@ $('.start').click(()=> {
 
 const g67 = () => {
   renderTemplate();
-  startTimer(15);
   $('#grade').text('G6 / G7');
   $('.myform').append(
     `      
@@ -48,7 +47,7 @@ const g67 = () => {
 
 const g23 = () => {
   renderTemplate();
-  startTimer(15);
+  startTimer();
   $('#grade').text('G2 / G3');
   $('.myform').append(
     `      
@@ -148,8 +147,7 @@ const calculateScore = (answer) => {
       userAnswers.push(txt)
       txt === '' && missingAnswers.push(j);
       } 
-
-      if( (missingAnswers.length !== 0) && ontime) {
+      if( missingAnswers.length !== 0 && !isOnTime) {
         alert(`Please Answer Question No. ${[...missingAnswers]} !`)
       } else {
       for (let i=0; i<n; i++) {
@@ -170,22 +168,23 @@ const calculateScore = (answer) => {
   })
 }
 
-const startTimer = (t) => {
+const startTimer = () => {
+
   $('.timer').removeClass('d-none');
-  var m = t;
+  var m = 15;
   var s = 0;
   const daojishi = setInterval(() => {
     $('#m').text(m);
     (s < 10) ? $('#s').text('0' + s) : $('#s').text(s);
+    console.log(m,s)
     if (s===0) {
       s = 60;
       m--;
     }
-    if (m===0) {
-      ontime = false;
+    if (s===40) {
       clearInterval(daojishi);
-      alert('Time is up !')
-      $(".finish" ).trigger("click");
+      isOnTime = false;
+      calculateScore(g23_answers);
     }  
     s--;
   }, 1000);
